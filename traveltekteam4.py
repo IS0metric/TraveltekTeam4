@@ -33,10 +33,36 @@ def index():
         imageurl = None
         for ship in ships:
             imageurl = ship.get("imageurl")
-        print("{0} is {1}".format(name, price))
-        print(imageurl)
-        all_cruises.append({"name": name, "price": price, "imageurl": imageurl, })
-    context["all_cruises"] = all_cruises
+        ports = element.iterdescendants("ports")
+        ports_list = []
+        for ports_element in ports:
+            for port in ports_element.iterdescendants("port"):
+                port_name = port.get("name")
+                port_id = port.get("id")
+                ports_list.append({"name":port_name, "id":port_id})
+        all_cruises.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list})
+    if price != "0.00":
+        context["all_cruises"] = all_cruises
+    nights_7 = []
+    print(etree.tostring(root))
+    for element in root.iterfind("results/cruise"):
+        name = element.get("name")
+        price = element.get("price")
+        nights = element.get("nights")
+        ships = element.iterdescendants("ship")
+        imageurl = None
+        for ship in ships:
+            imageurl = ship.get("imageurl")
+        ports = element.iterdescendants("ports")
+        ports_list = []
+        for ports_element in ports:
+            for port in ports_element.iterdescendants("port"):
+                port_name = port.get("name")
+                port_id = port.get("id")
+                ports_list.append({"name":port_name, "id":port_id})
+        if nights == "7" and price != "0.00":
+            nights_7.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list})
+    context["nights_7"] = nights_7
     return render_template('Index.html', context=context)
 
 if __name__ == "__main__":
