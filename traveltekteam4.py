@@ -12,7 +12,7 @@ testreq = '''<?xml version="1.0"?>
     <auth username="hackathon" password="pr38ns48" />
     <method action="simplesearch" sitename="cruisedemo.traveltek.net"
         status="Live" type="cruise">
-        <searchdetail type="cruise" startdate="2017-04-01" enddate="2017-04-30"
+        <searchdetail type="cruise" startdate="1970-01-01" enddate="2020-01-31"
             adults="2" children="0" sid="30115" resultkey="default">
         </searchdetail>
     </method>
