@@ -178,7 +178,7 @@
 <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
 
 <script>
-var destination = {{context.name}};
+var destination = "{{context.name}}";
 
 $('#youtube').html('<iframe id="ytplayer" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/?listType=search&list=' + destination + ' travel" frameborder="0" allowfullscreen>');
 
