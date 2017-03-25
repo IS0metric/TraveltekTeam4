@@ -29,13 +29,15 @@ def index():
     for element in root.iterfind("results/cruise"):
         name = element.get("name")
         price = element.get("price")
-        ship = element.get("ship")
-        #imageurl = ship.get("imageurl")
+        ships = element.iterdescendants("ship")
+        imageurl = None
+        for ship in ships:
+            imageurl = ship.get("imageurl")
         print("{0} is {1}".format(name, price))
         print(imageurl)
-        all_cruises.append({"name": name, "price": price})#, "imageurl": imageurl})
+        all_cruises.append({"name": name, "price": price, "imageurl": imageurl, })
     context["all_cruises"] = all_cruises
-    return render_template('index.html', context=context)
+    return render_template('Index.html', context=context)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=80)
+    app.run(host='0.0.0.0', port=80)
