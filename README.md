@@ -2,6 +2,8 @@
 
 Cruise project
 
+Python for Windows: https://www.python.org/ftp/python/3.6.1/python-3.6.1.exe
+
 Ian:
 - installed nautilus to be used via X11 for visual file management on the server - ports seem to be blocked
 - stock photos: https://stocksnap.io/
