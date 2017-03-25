@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/scroller.js')}}"></script>
+    <script>
+    var options = {
+        horizontal: 1,
+        itemNav: 'basic',
+        speed: 300,
+        mouseDragging: 1,
+        touchDragging: 1,
+        scrollBar: '.scrollbar',
+        dragHandle: true
+    };
+    var frame = new Sly('#frame', options).init();
+    </script>
+
 
 
     <title>Title</title>
@@ -28,6 +43,7 @@
 
 <div class="frame" id="frame">
     <ul class="slidee">
+<<<<<<< HEAD
 
       <li> item </li>
         <li> item </li>
@@ -47,9 +63,29 @@
         <li> item </li>
         <li> item </li>
 
+=======
+      <!--
+       {% for cruise in context.all_cruises %}
+        <li><p>{{cruise.name}}</p></li>
+        {% endfor %}-->
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+        <li>TEST</li>
+>>>>>>> origin/master
 
     </ul>
-
 </div>
 
 <div class="scrollbar" id="scrollbar">
@@ -71,22 +107,10 @@
 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-<script src="scroller.js"></script>
+
 <script>
-    var options = {
-        horizontal: 1,
-        itemNav: 'basic',
-        speed: 300,
-        mouseDragging: 1,
-        touchDragging: 1,
-        scrollBar: '.scrollbar',
-        dragHandle: true
-    };
-    var frame = new Sly('#frame', options).init();
+
+
 
 </script>
 </body>
