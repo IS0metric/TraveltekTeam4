@@ -39,7 +39,10 @@
     <ul class="slidee">
 
       {% for cruise in context.all_cruises %}
-        <li>{{cruise.name}}</li>
+        <li style="width: 120px">
+          {{cruise.name}}
+          <img src={{cruise.imageurl}} style="width: 100%"></img>
+        </li>
       {% endfor %}
 
 
