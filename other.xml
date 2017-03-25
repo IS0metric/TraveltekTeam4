@@ -1,0 +1,13 @@
+<application>
+  <component name="NodeJsLocalInterpreters">
+    <local-interpreter path="$USER_HOME$/WebstormProjects/Doctor_Surgery_App/appointmentList.html">
+      <version-cache last-modified="1479867438000" />
+    </local-interpreter>
+    <local-interpreter path="$USER_HOME$/WebstormProjects/Doctor_Surgery_App/appointmentList.js">
+      <version-cache last-modified="1480366046000" />
+    </local-interpreter>
+    <local-interpreter path="$USER_HOME$/WebstormProjects/Doctor_Surgery_App/plugins/bootstrap/js/bootstrap.js">
+      <version-cache last-modified="1469462008000" />
+    </local-interpreter>
+  </component>
+</application>
