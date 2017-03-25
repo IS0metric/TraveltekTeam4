@@ -7,3 +7,6 @@ Ian:
 - stock photos: https://stocksnap.io/
 - ideas: https://devpost.com/hackathons
 - technology stack: python/flask, bootstrap (potentially)
+
+Selling points so far:
+- make it mobile-friendly
