@@ -1,0 +1,2 @@
+var destination = "Hawaii";
+
