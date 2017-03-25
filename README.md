@@ -13,3 +13,4 @@ Selling points so far:
 
 Plan:
 - return all data at once to avoid delays when showing the end product. This is okay since the data that is to be transferred will be fairly small in size. This can be stored in HTML5 storage.
+- invent categories using the API data: e.g. popular crusises, etc
