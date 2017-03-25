@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import requests
 from lxml import etree
 
@@ -22,14 +22,18 @@ testreq = '''<?xml version="1.0"?>
 def index():
     context = {}
     r = requests.post('https://fusionapi.traveltek.net/0.9/interface.pl',
-    data={"xml": testreq})
+        data={"xml": testreq})
     root = etree.fromstring(r.text)
     all_cruises = []
-    for element in root.find("results/cruise"):
+    print(etree.tostring(root))
+    for element in root.iterfind("results/cruise"):
         name = element.get("name")
         price = element.get("price")
+        ship = element.get("ship")
+        #imageurl = ship.get("imageurl")
         print("{0} is {1}".format(name, price))
-        all_cruises.append({"name": name, "price": price})
+        print(imageurl)
+        all_cruises.append({"name": name, "price": price})#, "imageurl": imageurl})
     context["all_cruises"] = all_cruises
     return render_template('index.html', context=context)
 
