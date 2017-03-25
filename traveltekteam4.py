@@ -18,6 +18,9 @@ testreq = '''<?xml version="1.0"?>
     </method>
 </request>'''
 
+sessionkey = None
+cruises = []
+
 @app.route('/')
 def index():
     context = {}
@@ -27,25 +30,7 @@ def index():
     all_cruises = []
     print(etree.tostring(root))
     for element in root.iterfind("results/cruise"):
-        name = element.get("name")
-        price = element.get("price")
-        ships = element.iterdescendants("ship")
-        imageurl = None
-        for ship in ships:
-            imageurl = ship.get("imageurl")
-        ports = element.iterdescendants("ports")
-        ports_list = []
-        for ports_element in ports:
-            for port in ports_element.iterdescendants("port"):
-                port_name = port.get("name")
-                port_id = port.get("id")
-                ports_list.append({"name":port_name, "id":port_id})
-        all_cruises.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list})
-    if price != "0.00":
-        context["all_cruises"] = all_cruises
-    nights_7 = []
-    print(etree.tostring(root))
-    for element in root.iterfind("results/cruise"):
+        resultno = element.get("resultno")
         name = element.get("name")
         price = element.get("price")
         nights = element.get("nights")
@@ -60,10 +45,42 @@ def index():
                 port_name = port.get("name")
                 port_id = port.get("id")
                 ports_list.append({"name":port_name, "id":port_id})
-        if nights == "7" and price != "0.00":
-            nights_7.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list})
+        all_cruises.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list, "resultno":resultno, "nights":nights})
+        cruises.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list, "resultno":resultno, "nights":nights})
+    context["all_cruises"] = all_cruises
+    nights_7 = []
+    print(etree.tostring(root))
+    for element in root.iterfind("results/cruise"):
+        resultno = element.get("resultno")
+        name = element.get("name")
+        price = element.get("price")
+        nights = element.get("nights")
+        ships = element.iterdescendants("ship")
+        imageurl = None
+        for ship in ships:
+            imageurl = ship.get("imageurl")
+        ports = element.iterdescendants("ports")
+        ports_list = []
+        for ports_element in ports:
+            for port in ports_element.iterdescendants("port"):
+                port_name = port.get("name")
+                port_id = port.get("id")
+                ports_list.append({"name":port_name, "id":port_id})
+        if nights == "7":
+            nights_7.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list, "resultno":resultno, "nights":nights})
+            cruises.append({"name": name, "price": price, "imageurl": imageurl, "ports":ports_list, "resultno":resultno, "nights":nights})
     context["nights_7"] = nights_7
     return render_template('Index.html', context=context)
+
+
+@app.route("/cruise/<resultno>")
+def cruise_page(resultno):
+    cruise = None
+    for c in cruises:
+        if c["resultno"] == resultno:
+            cruise = c
+    context = cruise
+    return render_template('Content.html', context=context)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)

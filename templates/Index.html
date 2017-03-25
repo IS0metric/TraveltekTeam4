@@ -13,9 +13,9 @@
 
     <title>Title</title>
 <style>
-    .frame { width: 100%; height: 160px; padding: 0; }
+    .frame { width: 100%; height: 310px; padding: 0; }
     .frame .slidee { margin: 0; padding: 0; height: 100%; list-style: none; }
-    .frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 300px; height: 100%; }
+    .frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 300px; height: 100%}
     .scrollbar { width: 100%; height: 10px; }
     .scrollbar .handle {
         width: 100px; /* overriden if dynamicHandle: 1 */
@@ -86,9 +86,16 @@
 
       {% for cruise in context.all_cruises %}
         <li>
-          {{cruise.name}}
-          <img src={{cruise.imageurl}} style="width: 100%"></img>
-          <p>{{cruise.price}}</p>
+          <div class="panel panel-default">
+            <div class="panel-heading" style="overflow: hidden; text-overflow: elipsis; height: 61px">
+              <a href="/cruise/{{cruise.resultno}}" style="text-decoration: none"><h4 style="overflow: hidden; text-overflow: ellipsis; weight: 268px">{{cruise.name}}</h4></a>
+            </div>
+            <div class="panel-body" style="padding: 0; height: 180px">
+              <a href="/cruise/{{cruise.resultno}}"><img src={{cruise.imageurl}} style="width: 100%; max-height: 180px"></img></a>
+            </div>
+            <div class="panel-footer">
+              <a href="/cruise/{{cruise.resultno}}"><p>{{cruise.price}}</p></a></div>
+          </div>
         </li>
       {% endfor %}
     </ul>
@@ -103,34 +110,28 @@
     <ul class="slidee">
 
       {% for cruise in context.nights_7 %}
-        <li>
-          {{cruise.name}}
-          <img src={{cruise.imageurl}} style="width: 100%"></img>
-          <p>{{cruise.price}}</p>
-        </li>
+      <li>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="overflow: hidden; text-overflow: elipsis; height: 61px">
+            <a href="cruise/{{cruise.resultno}}" style="text-decoration: none"><h4 style="overflow: hidden; text-overflow: ellipsis; weight: 268px">{{cruise.name}}</h4></a>
+          </div>
+          <div class="panel-body" style="padding: 0; height: 180px">
+            <a href="/cruise/{{cruise.resultno}}"><img src={{cruise.imageurl}} style="width: 100%; max-height: 180px"></img></a>
+          </div>
+          <div class="panel-footer">
+            <a href="/cruise/{{cruise.resultno}}"><p>{{cruise.price}}</p></a></div>
+        </div>
+      </li>
       {% endfor %}
     </ul>
 </div>
 <div class="scrollbar" id="scrollbar2">
     <div class="handle"></div>
 </div>
-<br>
-<br>
-<h2>5 Star Cruises</h2>
-<br>
-<br>
-<h2>Sales</h2>
-<br>
-<br>
-<h2>Shit holes</h2>
-</div>
-
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <script src="{{url_for('static', filename='js/scroller.js')}}"></script>
 <script>
     var options = {
